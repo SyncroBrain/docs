@@ -21,7 +21,7 @@
 | VibeAgent | **赚** — 设备 Agent 链上变现 |
 
 ```text
-设备 ──MQTT──► LuminaryIoTChain ──► 可选跳转四兄弟产品
+设备 ──MQTT──► SyncroBrain ──► 可选跳转四兄弟产品
 ```
 
 ## 与涂鸦的差异（摘要）
