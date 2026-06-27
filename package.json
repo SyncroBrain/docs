@@ -1,0 +1,14 @@
+{
+  "name": "@syncrobrain/docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SyncroBrain public documentation (RsPress)",
+  "scripts": {
+    "dev": "rspress dev --port 13014",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "devDependencies": {
+    "rspress": "^1.43.0"
+  }
+}

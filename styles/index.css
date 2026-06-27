@@ -1,0 +1,54 @@
+:root {
+  --rp-c-brand: #1677ff;
+  --rp-c-brand-dark: #0958d9;
+  --rp-c-brand-light: #4593ff;
+  --rp-home-hero-name-color: transparent;
+}
+
+.rspress-home-hero-name {
+  background: linear-gradient(120deg, #1677ff 20%, #18a0fb 60%, #21d4a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.rspress-home-hero-text {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.rspress-home-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.rspress-home-hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  width: 60rem;
+  height: 60rem;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(22, 119, 255, 0.18) 0%, rgba(22, 119, 255, 0) 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rspress-home-feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid var(--rp-c-divider);
+}
+
+.rspress-home-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(22, 119, 255, 0.16);
+  border-color: var(--rp-c-brand-light);
+}
+
+.rspress-home-hero-action.brand {
+  background: linear-gradient(120deg, #1677ff, #18a0fb);
+  border: none;
+}
