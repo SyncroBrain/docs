@@ -1,4 +1,4 @@
-# SyncroBrain Docs
+﻿# SyncroBrain Docs
 
 对外文档站（[RsPress](https://rspress.dev/)）— **公开仓** [`syncrobrain/docs`](https://github.com/syncrobrain/docs)。
 
@@ -40,3 +40,7 @@ docs/                    # 本仓库根
 git add -A && git commit -m "docs: ..."
 git push origin master
 ```
+
+## License
+
+[Polyform Noncommercial License 1.0.0](LICENSE) (Polyform-NC). See SyncroBrain meta repo for commercial licensing.
