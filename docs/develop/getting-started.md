@@ -1,13 +1,12 @@
 # 快速开始
 
-面向硬件厂商与集成商的公开入门指南。组织成员完整开发流程见 [新人上手](/develop/onboarding)。
+对外可执行路径是 **[安装 Cloud Lite](/guide/install)**（Compose 一键：TB + Gateway + Console）。下面是组织成员从 MetaRepo 开发的补充。
 
 ## 前置条件
 
-- [Node.js](https://nodejs.org/) 20+（推荐 24，见 `.nvmrc`）
-- [pnpm](https://pnpm.io/)
-- [Docker](https://www.docker.com/)（本地基础设施）
-- GitHub 账号（访问私有子仓需加入 `syncrobrain` 组织）
+- [Docker](https://www.docker.com/) + Compose v2
+- 改代码时：[Node.js](https://nodejs.org/) ≥ 24、[pnpm](https://pnpm.io/)
+- GitHub 账号（私有子仓需加入 `syncrobrain` 组织）
 
 ## 1. 克隆 MetaRepo
 
@@ -36,8 +35,8 @@ cd syncrobrain
 
 | 服务 | 命令 | 地址 |
 |------|------|------|
-| iot-gateway | `cd iot-gateway && pnpm dev` | http://localhost:13100 |
-| iot-console-web | `cd iot-console-web && pnpm dev` | http://localhost:5180 |
+| iot-gateway | `cd iot-gateway && pnpm dev` | http://localhost:13200 |
+| iot-console-web | `cd iot-console-web && pnpm dev` | http://localhost:15180 |
 
 ## 3. 统一登录（可选）
 
@@ -77,6 +76,7 @@ pnpm dev
 
 ## 下一步
 
-- [新人上手](/develop/onboarding) — 组织成员完整流程
+- [安装 Cloud Lite](/guide/install)
+- [10 分钟演示](/guide/demo)
+- [新人上手](/develop/onboarding)
 - [四层架构](/guide/architecture)
-- [LuminaryWorks 开发者文档](https://github.com/LuminaryWorks/docs)

@@ -4,7 +4,7 @@ import { defineConfig } from "rspress/config";
 export default defineConfig({
   root: "docs",
   title: "SyncroBrain · 万物智脑",
-  description: "开源、AI 驱动的 IoT PaaS — 设备接入、多租户控制台与 LuminaryWorks 生态",
+  description: "Cloud Lite：ThingsBoard CE 运行时 + SyncroBrain 交付层（Pack、Console、私有化安装）",
   icon: "/logo.png",
   logo: "/logo.png",
   logoText: "万物智脑",
@@ -15,7 +15,8 @@ export default defineConfig({
       { icon: "github", mode: "link", content: "https://github.com/syncrobrain" },
     ],
     nav: [
-      { text: "生态", link: "/guide/ecosystem" },
+      { text: "安装", link: "/guide/install" },
+      { text: "演示", link: "/guide/demo" },
       { text: "架构", link: "/guide/architecture" },
       { text: "开发者", link: "/develop/getting-started" },
     ],
@@ -24,6 +25,8 @@ export default defineConfig({
         {
           text: "了解 SyncroBrain",
           items: [
+            { text: "安装 Cloud Lite", link: "/guide/install" },
+            { text: "10 分钟演示", link: "/guide/demo" },
             { text: "生态定位", link: "/guide/ecosystem" },
             { text: "四层架构", link: "/guide/architecture" },
           ],

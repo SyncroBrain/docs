@@ -1,81 +1,73 @@
-# 四层架构
+# 架构（Cloud Lite）
 
-> **核心逻辑**：设备（端）→ MQTT 协议（管道）→ 物联网平台（大脑）→ 终端 App（展示）  
-> **场景约束**：B 端低频次采集，非消费级百万并发。
+> **当前可安装**：Pipe 是 **ThingsBoard MQTT Transport**，不是 EMQX。远期分层见下表「以后」列；端口与演示以 [安装](/guide/install) 为准。权威规格：[GitHub MetaRepo `spec/architecture.md`](https://github.com/syncrobrain/platform)（私有）。
 
-## 架构总览
+## 分层总览
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────┐
-│  用户层 (Client)                                                     │
-│  Flutter / React Native App · iot-console-web · DataTalk 嵌入大屏    │
+│  产品入口                                                             │
+│  iot-console-web · Pack 向导 · 告警列表 · CSV                         │
 ├─────────────────────────────────────────────────────────────────────┤
-│  管理层 (Brain)                                                      │
-│  ThingsBoard CE — 设备影子 · 规则引擎 · 多租户 · 告警                  │
-│  DataLuminary DataTalk — 图表 / 仪表盘                               │
-│  iot-gateway (NestJS) — 生态编排 · Identity · PAL · 跨产品 API      │
+│  交付编排（SyncroBrain）                                              │
+│  iot-gateway — Project/Site · Pack · 许可占位 · TB REST               │
 ├─────────────────────────────────────────────────────────────────────┤
-│  通信层 (Pipe)                                                       │
-│  EMQX (Open Source) — MQTT 管道 · TLS · 桥接 · WebSocket             │
+│  IoT 运行时（ThingsBoard CE）                                         │
+│  MQTT Transport · Device · Telemetry · Rule · Alarm · Dashboard       │
 ├─────────────────────────────────────────────────────────────────────┤
-│  设备端 (Edge)                                                       │
-│  ESPHome / Tasmota / 自定义 Firmware · OTA · 标准 Topic 契约         │
+│  数据                                                                 │
+│  PostgreSQL（TB 默认）· Gateway 元数据                                │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-## 分层选型
+## 选型
 
-| 层 | 角色 | 选型 | 职责 |
-|----|------|------|------|
-| **Edge** | 设备端 | ESPHome、Tasmota、厂商 Firmware | 硬件标准化、传感器采集、OTA |
-| **Pipe** | 通信层 | **EMQX** (OSS) | MQTT 连接与桥接（B 端千～万级、低频次上报） |
-| **Brain** | 管理层 | **ThingsBoard CE** + **iot-gateway** | 设备影子、规则引擎、租户；LuminaryWorks 编排 |
-| **Client** | 用户层 | Flutter / RN App + **iot-console-web** | 控制与监控；DataTalk 嵌入专业图表 |
+| 层 | Cloud Lite 默认 | 以后（有证据） |
+|----|-----------------|----------------|
+| 入口 | iot-console-web | 白牌主题；可选嵌 TB Dashboard |
+| 编排 | iot-gateway（NestJS Fastify） | Entitlement 接线 |
+| 运行时 | ThingsBoard CE | — |
+| MQTT | TB Transport `:1883` | 独立 EMQX 平面 |
+| 图表 | TB Dashboard + Console | 可选 DataTalk |
+| 移动端 | 不强制 | 原生 App |
 
 ## 缝合而非重造
 
-不自研 MQTT Broker、时序引擎或设备影子核心：
+不自研 MQTT Broker、时序引擎或设备影子核心。行业协议在边缘解调后，以标准 TB MQTT Topic 进入平台。
 
-| 层 | 开源底座 | SyncroBrain 自研 |
-|----|----------|------------------|
-| Pipe | EMQX | 租户认证、桥接配置、Topic 契约 |
-| Brain | ThingsBoard CE、规则链 | iot-gateway 编排、行业 Decoder、生态 API |
-| Client | DataTalk | iot-console-web、White-label App 壳 |
+## 数据流
 
-行业非标协议（Modbus、BACnet、OPC-UA）在 Edge 或 Node-RED 解调后，以标准 MQTT Topic 进入平台。
-
-## 数据流（摘要）
-
-**上行遥测**
+**上行**
 
 ```text
-ESPHome ──publish──► EMQX ──bridge──► ThingsBoard
-                              └──► iot-gateway ──► 时序存储（规划）
+设备 / 模拟器 ──MQTT──► ThingsBoard Transport ──► 时序 / Rule / Alarm
+                              └──► Gateway REST（资产映射、Pack、CSV）
 ```
 
-**下行指令**
+**下行**
 
 ```text
-App / Console ──REST──► ThingsBoard ──MQTT──► EMQX ──► Device
+Console ──REST──► Gateway ──TB REST──► Device
 ```
 
-## 生态扩展
+## 生态（可选，非成交前提）
 
-| 场景 | 对接产品 |
-|------|----------|
+| 场景 | 产品 |
+|------|------|
 | BI 大屏 | DataLuminary DataTalk |
-| AI 推理 / 链上任务 | DoerFlow |
-| 远程桌面运维 | VistaRemote |
-| 工程师接入实验 | BlockyEdu |
+| 远程运维 | VistaRemote |
+| 工程师实验 | BlockyEdu |
 
-## 本地开发栈
+AI / 链上（DoerFlow）、视频 AI（VistaCast）不进入当前演示叙事。
 
-| 服务 | 默认端口 |
-|------|----------|
-| iot-gateway | `:13100` |
-| iot-console-web | `:5180` |
-| PostgreSQL（dev） | `:5434` |
-| Redis（dev） | `:6381` |
-| MQTT（dev Mosquitto） | `:1883` |
+## 本地端口
 
-详见 [快速开始](/develop/getting-started) 与 [新人上手](/develop/onboarding)。
+| 服务 | 端口 |
+|------|------|
+| ThingsBoard CE UI/API | `:19080` |
+| ThingsBoard MQTT | `:1883` |
+| Gateway PostgreSQL | `:5438` |
+| iot-gateway | `:13200` |
+| iot-console-web | `:15180` |
+
+详见 [安装](/guide/install) 与 [新人上手](/develop/onboarding)。

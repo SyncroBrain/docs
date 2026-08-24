@@ -1,40 +1,47 @@
 # SyncroBrain 与 LuminaryWorks 生态
 
-> 对外说明。工程规格与路线图在私有 MetaRepo `syncrobrain/platform` 的 `spec/` 目录。
+> 对外说明。工程规格在私有 MetaRepo `syncrobrain/platform` 的 `spec/`。
 
 ## 本产品是什么
 
-**SyncroBrain（万物智脑）** 是开源、AI 驱动的 IoT PaaS：EMQX + ThingsBoard + 控制台，深耕 **B 端垂直行业**与**白牌出海**，帮助硬件厂商以**数万级成本**完成私有化上云（大厂私有化动辄数十万）。可**单独部署**，数据不出园区/国境。
+**SyncroBrain（万物智脑）** 当前对外可安装的是 **Cloud Lite**：
 
-**我们做什么**：行业协议解调（Modbus / BACnet / OPC-UA → 业务 KPI）、专属 BI 看板、贴牌 App、联合乐鑫 ESP32 / 国产 T5 等芯片的极简适配层。
+- 设备运行时：**ThingsBoard CE**（Apache-2.0）— MQTT、时序、规则、告警  
+- 交付层：iot-gateway + Console + **Industry Pack**（Polyform-NC）  
+- 目标：集成商 **30 分钟能看、7 天内可私有化**，而不是自研一套 Broker
 
-**我们不做什么**：消费级百万并发设备、通用智能家居、从零自研 MQTT 代理或时序库。
+独立 **EMQX** 平面、Decoder 市场、原生 App **不是** Cloud Lite 出门条。有付费项目证据后再加。
+
+**我们做什么**：把 TB CE 装成可交付产品（Pack、备份、许可叙事、Console 入口）。  
+**我们不做什么**：消费级百万并发、从零自研 MQTT/时序、把 TB 换皮且去掉 NOTICE。
+
+先看 [安装](/guide/install) 与 [10 分钟演示](/guide/demo)。
 
 ## 在 LuminaryWorks 六产品中的位置
 
 | 产品 | 角色 |
 |------|------|
-| [BlockyEdu](https://github.com/blockyedu/platform) | **学** — 工程师 ESPHome/MQTT 接入辅导 |
-| **SyncroBrain（本产品）** | **连** — 设备 MQTT 管道与多租户平台 |
-| [DataLuminary](https://github.com/dataluminary/platform) | **看** — DataTalk 设备监控大屏 |
-| [VistaCast](https://github.com/VistaCast/vistacast) | **视** — AI 摄像头云监控（规划） |
-| [VistaRemote](https://github.com/VistaRemote/vibeCode) | **控** — 设备远程运维 |
-| [DoerFlow](https://github.com/doerflow/platform) | **赚** — 设备 Agent 链上变现 |
+| [BlockyEdu](https://github.com/blockyedu/platform) | **学** — 工程师接入辅导 |
+| **SyncroBrain（本产品）** | **连** — 设备与多租户 IoT 底座 |
+| [DataLuminary](https://github.com/dataluminary/platform) | **看** — DataTalk 大屏（可选） |
+| [VistaCast](https://github.com/VistaCast/vistacast) | **视** — 摄像头云监控 |
+| [VistaRemote](https://github.com/VistaRemote/vibeCode) | **控** — 远程运维 |
+| [DoerFlow](https://github.com/doerflow/platform) | **做** — 工作流 / Agent（可选，非 Cloud Lite 依赖） |
 
 ```text
-设备 ──MQTT──► SyncroBrain ──► 可选跳转兄弟产品（大屏 / 远程 / Agent）
+设备 / 模拟器 ──MQTT──► ThingsBoard CE ── REST 编排 ──► SyncroBrain Console
 ```
 
-## 与涂鸦的差异（摘要）
+## 与公有云 IoT 套件的差异（摘要）
 
-- 开源可私有化，许可与部署成本更低（数万级 vs 大厂数十万）
-- 深耕长尾行业：大厂不愿定制的行业 Decoder 与专属 BI
-- 数据合规：满足 GDPR、NIS2、信创；本地化售后与 White-label
-- 不止设备管理：**AI 推理、DataTalk 大屏、链上 Agent 市场**
-- BlockyEdu 降低工程师接入门槛；白牌厂可搭建自有微型「品牌云」
+- 运行时可私有化审计（TB CE 上游 + NOTICE）  
+- 行业差异进 **Pack**，不进第二套规则引擎  
+- 数据可不出园区；商业许可走 SyncroBrain 年支持，不是无限免费定制  
+
+链上、AI、Decoder 商店属于更后阶段，演示时不要先讲。
 
 ## 延伸阅读
 
+- [安装 Cloud Lite](/guide/install)
 - [四层架构](/guide/architecture)
 - [开发者快速开始](/develop/getting-started)
-- [LuminaryWorks 生态叙事](https://github.com/LuminaryWorks/docs/blob/main/docs/guide/ecosystem.md)

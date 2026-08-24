@@ -30,7 +30,7 @@ Linux / macOS：`./dev.sh && ./dev-mvp.sh`
 |------|------|
 | `init.sh` / `init.ps1` | 仅 clone 子仓 |
 | `dev.sh` / `dev.ps1` | clone + env + docker + install + migrate |
-| `dev-mvp.ps1` | 启动 gateway (:13100) + console (:5180) |
+| `dev-mvp.ps1` | 启动 gateway (:13200) + console (:15180) |
 
 可选：`.\dev.ps1 -SkipDocker` · `.\dev.ps1 -RequiredOnly`（只拉必选子仓）
 
@@ -59,7 +59,7 @@ cd D:\www\syncrobrain\deploy
 docker compose -f docker-compose.dev.yml up -d
 ```
 
-默认端口：PostgreSQL `:5434` · Redis `:6381` · MQTT `:1883`
+默认端口：PostgreSQL `:5438` · ThingsBoard `:19080` / MQTT `:1883` · Gateway `:13200` · Console `:15180`
 
 ## 按角色单独开发
 
@@ -75,6 +75,6 @@ docker compose -f docker-compose.dev.yml up -d
 
 ## 数据存储与登录
 
-- OLTP：PostgreSQL `:5434` — [LuminaryWorks datastore](https://github.com/LuminaryWorks/docs/blob/main/docs/develop/datastore.md)
+- OLTP：PostgreSQL `:5438`（Gateway `iot_core`）；ThingsBoard 使用镜像内嵌库
 - 统一登录：`@luminaryworks/auth-core` — [identity-roadmap](https://github.com/LuminaryWorks/docs/blob/main/docs/develop/identity-roadmap.md)
 - 本产品开发环境变量见 [统一登录](/develop/unified-login)
