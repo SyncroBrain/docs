@@ -11,9 +11,9 @@
 
 1. `deploy/`：`docker compose -f docker-compose.dev.yml up -d --build` → `./scripts/health-check.sh`  
 2. Console `:15180` 登录 → Header Gateway / TB 绿  
-3. 总览 → **冷藏实验室 · 一键演示** → 设备选中 → **复制模拟器命令** → `iot-gateway` 执行 → 刷新见温度/门  
-4. 告警 → **创建演示告警** → **确认** → **导出 CSV**  
-5. （有时间）设置 → 导出版本清单；口头或再跑 **环境机房** Pack  
+3. 总览 → **冷藏实验室 · 一键演示** → 设备选中 → **上报一次遥测** → 见温度/门（不必先跑 mqtt:sim）  
+4. 告警 → **超温模拟** → **确认** → **导出 CSV**  
+5. （有时间）设置 → 导出版本清单或试点交接包；口头或再跑 **环境机房** Pack（超湿）  
 6. 收尾：闭门试点与报价，不是公开文档站、不是再加 Broker  
 
 ## 开场一句
@@ -25,3 +25,4 @@
 - [ ] cold-lab 主路径走通；口头或实机提到 env-lab  
 - [ ] 告警 Ack + CSV  
 - [ ] 未承诺 EMQX / K8s / 原生 App / 完整计费 / 公开 docs  
+- [ ] （可选）`E2E_REQUIRE_STACK=1 pnpm --dir iot-console-web e2e`；无栈 skip 不算出门  
