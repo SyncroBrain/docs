@@ -20,7 +20,7 @@ features:
     link: /guide/install
     linkText: 安装
   - title: Industry Pack
-    details: `cold-lab` 冷藏参考包与 `env-lab` 环境点。换 Pack 不换运行时；行业方案可版本化复用。
+    details: "`cold-lab` 冷藏参考包与 `env-lab` 环境点。换 Pack 不换运行时；行业方案可版本化复用。"
     icon: 📦
     link: /guide/demo
     linkText: 10 分钟演示
@@ -30,7 +30,7 @@ features:
     link: /guide/architecture
     linkText: 架构
   - title: 统一身份（可选）
-    details: Logto OIDC + @luminaryworks/auth-core；本地演示登录亦可。私有化可接客户 IdP。
+    details: "Logto OIDC + @luminaryworks/auth-core；本地演示登录亦可。私有化可接客户 IdP。"
     icon: 🔐
     link: /develop/unified-login
     linkText: 接入指南

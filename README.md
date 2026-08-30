@@ -2,6 +2,8 @@
 
 对外文档站（[RsPress](https://rspress.dev/)）— **公开仓** [`syncrobrain/docs`](https://github.com/syncrobrain/docs)。
 
+**当前不部署 GitHub Pages。** CI 只 `pnpm build` 验证能编过，不发布站点。Product Iterate 政策：不挂公开文档站。
+
 MetaRepo（私有）：[syncrobrain/platform](https://github.com/syncrobrain/platform)
 
 ## 本地开发
