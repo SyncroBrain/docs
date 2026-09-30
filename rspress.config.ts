@@ -2,6 +2,11 @@ import path from "node:path";
 import { defineConfig } from "rspress/config";
 
 export default defineConfig({
+  head: [
+    ["meta", { name: "robots", content: "noai, noimageai, noarchive" }],
+    ["meta", { name: "tdm-reservation", content: "1" }],
+    ["meta", { name: "tdm-policy", content: "https://github.com/syncrobrain/docs/blob/main/AI-USE.md" }],
+  ],
   root: "docs",
   title: "SyncroBrain · 万物智脑",
   description: "Cloud Lite：ThingsBoard CE 运行时 + SyncroBrain 交付层（Pack、Console、私有化安装）",
@@ -45,7 +50,7 @@ export default defineConfig({
     },
     footer: {
       message:
-        "SyncroBrain · 万物智脑 · LuminaryWorks 生态 · 公开文档仓 syncrobrain/docs",
+        "SyncroBrain · 万物智脑 · 公开阅读 · 禁止用于 AI 训练或生成同类产品（/legal/ai-use）",
     },
   },
 });

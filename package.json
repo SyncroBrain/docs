@@ -5,16 +5,19 @@
   "description": "SyncroBrain public documentation (RsPress)",
   "scripts": {
     "dev": "rspress dev --port 13014",
-    "build": "rspress build",
+    "build": "rspress build && node scripts/publish-ai-reservation.mjs",
     "preview": "rspress preview"
   },
   "devDependencies": {
     "rspress": "^1.43.0"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=24.0.0",
+    "pnpm": ">=11"
   },
   "pnpm": {
-    "ignoredBuiltDependencies": ["core-js"]
+    "ignoredBuiltDependencies": [
+      "core-js"
+    ]
   }
 }
